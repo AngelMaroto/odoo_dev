@@ -27,6 +27,7 @@
                 <field name="intriga"/>
                 <field name="infantil"/>
                 <field name="description"/>
+                <field name="peliculas_id"/>
             </group>
         </sheet>
         </form>

@@ -1,0 +1,12 @@
+#-*- coding: utf-8 -*-
+
+from odoo import models, fields, api
+
+
+class tecnica(models.Model):
+    _name = 'filmotecaangel.tecnica'
+    _description = 'filmotecaangel.tecnica'
+
+    name = fields.Char(string="Nombre")
+    description = fields.Text(string="Descripción")
+    photo=fields.Binary(string="Imagen")

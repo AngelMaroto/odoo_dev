@@ -15,7 +15,8 @@ class pelicula(models.Model):
     is_spanish = fields.Boolean()
 
     genero_id = fields.Many2one("filmotecaangel.genero", string="Género", required=True, ondelete="cascade")
-
+    tecnicas_id = fields.Many2many("filmotecaangel.tecnica")
+    
     image = fields.Binary(string="Imagen", help="suba la imagen")
     language = fields.Selection([('es','Español'),
                                 ('en','Inglés'),

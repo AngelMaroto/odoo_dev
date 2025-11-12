@@ -11,3 +11,5 @@ class genero(models.Model):
     description = fields.Text()
     intriga = fields.Boolean()
     infantil = fields.Boolean()
+
+    peliculas_id = fields.One2many(string="Películas", comodel_name="filmotecaangel.pelicula", inverse_name="genero_id")
