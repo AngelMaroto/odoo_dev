@@ -1,0 +1,91 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="vista_filmotecaangel_tecnica_tree">
+      <field name="name">vista_filmotecaangel_tecnica_tree</field>
+      <field name="model">filmotecaangel.tecnica</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="description"/>
+          <field name="photo"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="vista_filmotecaangel_tecnica_form">
+      <field name="name">vista_filmotecaangel_tecnica_form</field>
+      <field name="model">filmotecaangel.tecnica</field>
+      <field name="arch" type="xml">
+        <form string="formulario_tecnica">
+        <sheet>
+            <group name="group_top">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="peliculas_id"/>
+            </group>
+        </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <!-- <record model="ir.actions.act_window" id="filmotecaangel.action_window">
+      <field name="name">filmotecaangel window</field>
+      <field name="res_model">filmotecaangel.pelicula</field>
+      <field name="view_mode">tree,form</field>
+    </record> -->
+
+
+    <!-- server action to the one above -->
+
+    <!-- <record model="ir.actions.server" id="filmotecaangel.action_server">
+      <field name="name">filmotecaangel server</field>
+      <field name="model_id" ref="model_filmotecaangel_filmotecaangel"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record> -->
+
+    
+<record model="ir.actions.act_window" id="accion_filmotecaangel_tecnica_form">
+      <field name="name">Listado de técnicas de rodaje</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">filmotecaangel.tecnica</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+          Género
+        </p>
+        <p> Click <strong> 'Crear' </strong> para añadir nuevos elementos
+         </p>
+      </field>
+    </record>
+
+
+    
+
+
+
+
+    <!-- Menu raiz -->
+
+    <menuitem name="Listado de técnicas de rodaje" id="menu_filmotecaangel_listado_tecnicas" parent="menu_filmotecaangel_raiz"/>
+
+
+    <!-- actions -->
+
+    <menuitem name="Consultar" id="menu_filmotecaangel_tecnicas" parent="menu_filmotecaangel_listado_tecnicas"
+              action="accion_filmotecaangel_tecnica_form"/>
+
+  </data>
+</odoo>

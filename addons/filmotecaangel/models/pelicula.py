@@ -7,7 +7,8 @@ class pelicula(models.Model):
     _name = 'filmotecaangel.pelicula'
     _description = 'filmotecaangel.pelicula'
 
-    name = fields.Char(string="Nombre", readonly = False, required=True, help="Introduzca el nombre cariñin")
+    code = fields.Char(string="Código", compute="_get_code")
+    name = fields.Char(string="Nombre", readonly = False, required=True, help="Introduzca el nombre")
     description = fields.Text()
     film_date = fields.Date()
     start_date = fields.Datetime()
@@ -15,8 +16,22 @@ class pelicula(models.Model):
     is_spanish = fields.Boolean()
 
     genero_id = fields.Many2one("filmotecaangel.genero", string="Género", required=True, ondelete="cascade")
-    tecnicas_id = fields.Many2many("filmotecaangel.tecnica")
+    tecnicas_id = fields.Many2many(comodel_name = "filmotecaangel.tecnica",
+                                   relation = "tecnicas_peliculas",
+                                   column1 = "pelicula_id",
+                                   column2 = "tecnica_id",
+                                   string = "Técnicas")
     
+    def _get_code(self):
+        for pelicula in self:
+            if len(pelicula.genero_id) == 0:
+                pelicula.code = "FILM_"+str(pelicula.id)
+            else:
+                pelicula.code = str(pelicula.genero_id.name).upper()+"_"+str(pelicula.id)
+
+    def toggle_color(self):
+        self.is_spanish = not self.is_spanish
+
     image = fields.Binary(string="Imagen", help="suba la imagen")
     language = fields.Selection([('es','Español'),
                                 ('en','Inglés'),

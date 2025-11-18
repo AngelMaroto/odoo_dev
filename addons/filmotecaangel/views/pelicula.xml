@@ -26,8 +26,13 @@
       <field name="arch" type="xml">
         <form string="formulario_peliculas">
           <sheet>
+          <div class="oe_button_box" name="button_box">
+              <button name="toggle_color" type="object" class="oe_stat_button"
+              string="Película color" icon="fa-paint-brush"/>
+          </div>
               <group name="group_top">
                   <group name="group_left">
+                    <field name="code"/>
                     <field name="name"/>
                     <field name="film_date"/>
                     <field name="description"/>
