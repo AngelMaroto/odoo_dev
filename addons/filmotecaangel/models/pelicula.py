@@ -42,6 +42,14 @@ class pelicula(models.Model):
         print(pelicula)
         self.env['filmotecaangel.pelicula'].create(pelicula)
 
+    def f_search_update(self):
+        pelicula = self.env['filmotecaangel.pelicula'].search([('name', '=', 'Star Wars')])
+        print('search()', pelicula, pelicula.name)
+
+        pelicula.write({
+            "name": "ejemplo"
+        })
+
     image = fields.Binary(string="Imagen", help="suba la imagen")
     language = fields.Selection([('es','Español'),
                                 ('en','Inglés'),
