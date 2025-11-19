@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 
 from odoo import models, fields, api
-
+import datetime
 
 class pelicula(models.Model):
     _name = 'filmotecaangel.pelicula'
@@ -31,6 +31,16 @@ class pelicula(models.Model):
 
     def toggle_color(self):
         self.is_spanish = not self.is_spanish
+
+    def f_create(self):
+        pelicula={
+            "name": "Prueba ORM",
+            "color": "cl",
+            "genero_id": 1,
+            "start_date": str(datetime.date(2022,8,8))
+        }
+        print(pelicula)
+        self.env['filmotecaangel.pelicula'].create(pelicula)
 
     image = fields.Binary(string="Imagen", help="suba la imagen")
     language = fields.Selection([('es','Español'),

@@ -15,6 +15,7 @@
           <field name="language"/>
           <field name="opinion"/>
           <field name="color"/>
+          <button name="f_create" string="Crear" class="oe_hightlight" type="object"/>
         </tree>
       </field>
     </record>
