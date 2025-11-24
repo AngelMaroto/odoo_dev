@@ -1,0 +1,46 @@
+<odoo>
+<data>
+<record id="view_task_tree" model="ir.ui.view">
+    <field name="name">manage.task.tree</field>
+    <field name="model">manage.task</field>
+    <field name="arch" type="xml">
+      <tree string="Tasks">
+        <field name="name"/>
+        <field name="startdate"/>
+        <field name="enddate"/>
+        <field name="ispaused"/>
+        <field name="history_id"/>
+        <field name="sprint_id"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_task_form" model="ir.ui.view">
+    <field name="name">manage.task.form</field>
+    <field name="model">manage.task</field>
+    <field name="arch" type="xml">
+      <form string="Task Form">
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="description"/>
+            <field name="startdate"/>
+            <field name="enddate"/>
+            <field name="ispaused"/>
+            <field name="history_id"/>
+            <field name="sprint_id"/>
+            <field name="technology_ids" widget="many2many_tags"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+    <record id="action_manage_task" model="ir.actions.act_window">
+    <field name="name">Tasks</field>
+    <field name="res_model">manage.task</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+    <menuitem id="menu_manage_root" name="Manage Module"/>
+      <menuitem id="menu_manage_task" name="Tasks" parent="menu_manage_root" action="action_manage_task"/>
+</data>
+</odoo>

@@ -1,0 +1,37 @@
+<odoo>
+<data>
+<record id="view_technology_tree" model="ir.ui.view">
+    <field name="name">manage.technology.tree</field>
+    <field name="model">manage.technology</field>
+    <field name="arch" type="xml">
+      <tree string="Technologies">
+        <field name="name"/>
+        <field name="description"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_technology_form" model="ir.ui.view">
+    <field name="name">manage.technology.form</field>
+    <field name="model">manage.technology</field>
+    <field name="arch" type="xml">
+      <form string="Technology Form">
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="description"/>
+            <field name="photo"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+    <record id="action_manage_technology" model="ir.actions.act_window">
+    <field name="name">Technologies</field>
+    <field name="res_model">manage.technology</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+    <menuitem id="menu_manage_root" name="Manage Module"/>
+      <menuitem id="menu_manage_technology" name="Technologies" parent="menu_manage_root" action="action_manage_technology"/>
+</data>
+</odoo>

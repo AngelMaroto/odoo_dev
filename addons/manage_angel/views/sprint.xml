@@ -1,0 +1,42 @@
+<odoo>
+<data>
+<record id="view_sprint_tree" model="ir.ui.view">
+    <field name="name">manage.sprint.tree</field>
+    <field name="model">manage.sprint</field>
+    <field name="arch" type="xml">
+      <tree string="Sprints">
+        <field name="name"/>
+        <field name="startdate"/>
+        <field name="enddate"/>
+        <field name="project_id"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_sprint_form" model="ir.ui.view">
+    <field name="name">manage.sprint.form</field>
+    <field name="model">manage.sprint</field>
+    <field name="arch" type="xml">
+      <form string="Sprint Form">
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="description"/>
+            <field name="startdate"/>
+            <field name="enddate"/>
+            <field name="project_id"/>
+            <field name="task_ids"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+    <record id="action_manage_sprint" model="ir.actions.act_window">
+    <field name="name">Sprints</field>
+    <field name="res_model">manage.sprint</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+    <menuitem id="menu_manage_root" name="Manage Module"/>
+      <menuitem id="menu_manage_sprint" name="Sprints" parent="menu_manage_root" action="action_manage_sprint"/>
+</data>
+</odoo>
