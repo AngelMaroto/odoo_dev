@@ -1,4 +1,5 @@
-from odoo import models, fields
+from odoo import models, fields, api
+import datetime
 
 class Project(models.Model):
     _name = 'manage.project'
@@ -15,10 +16,20 @@ class Sprint(models.Model):
 
     name = fields.Char(string='Name', required=True)
     description = fields.Char(string='Description')
+    duration = fields.Integer()
     startdate = fields.Datetime(string='Start Date')
-    enddate = fields.Datetime(string='End Date')
+    enddate = fields.Datetime(compute="_get_end_date", store=True, string='End Date')
     project_id = fields.Many2one('manage.project', string='Project')
     task_ids = fields.One2many('manage.task', 'sprint_id', string='Tasks')
+
+    @api.depends('startdate','duration')
+    def _get_end_date(self):
+        for Sprint in self:
+            #try:
+                if isinstance(Sprint.startdate, datetime.datetime) and Sprint.duration > 0:
+                     Sprint.enddate = Sprint.startdate + datetime.timedelta(days=Sprint.duration)
+                else:
+                     Sprint.enddate = Sprint.startdate
 
 class History(models.Model):
     _name = 'manage.history'
