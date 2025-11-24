@@ -43,13 +43,17 @@ class pelicula(models.Model):
         self.env['filmotecaangel.pelicula'].create(pelicula)
 
     def f_search_update(self):
-        pelicula = self.env['filmotecaangel.pelicula'].search([('name', '=', 'Star Wars')])
+        pelicula = self.env['filmotecaangel.pelicula'].search([('name', '=', 'ejemplo')])
         print('search()', pelicula, pelicula.name)
 
         pelicula.write({
             "name": "ejemplo"
         })
 
+    def f_delete(self):
+        pelicula = self.env['filmotecaangel.pelicula'].browse([3])
+        pelicula.unlink()
+        
     image = fields.Binary(string="Imagen", help="suba la imagen")
     language = fields.Selection([('es','Español'),
                                 ('en','Inglés'),
