@@ -37,7 +37,7 @@
     <field name="res_model">manage.sprint</field>
     <field name="view_mode">tree,form</field>
   </record>
-    <menuitem id="menu_manage_root" name="Manage Module"/>
-      <menuitem id="menu_manage_sprint" name="Sprints" parent="menu_manage_root" action="action_manage_sprint"/>
+    <menuitem id="menu_manage_sprint" parent="menu_manage_root" action="action_manage_sprint"/>
+
 </data>
 </odoo>

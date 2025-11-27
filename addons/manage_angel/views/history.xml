@@ -32,7 +32,7 @@
     <field name="res_model">manage.history</field>
     <field name="view_mode">tree,form</field>
   </record>
-    <menuitem id="menu_manage_root" name="Manage Module"/>
-      <menuitem id="menu_manage_history" name="User Stories" parent="menu_manage_root" action="action_manage_history"/>
+  <menuitem id="menu_manage_root" name="Manage Module"/>
+    <menuitem id="menu_manage_history" parent="menu_manage_root" action="action_manage_history"/>
 </data>
 </odoo>

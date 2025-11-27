@@ -34,7 +34,7 @@
       <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="menu_manage_root" name="Manage Module"/>
-    <menuitem id="menu_manage_project" name="Projects" parent="menu_manage_root" action="action_manage_project"/>
+    <menuitem id="menu_manage_project" parent="menu_manage_root" action="action_manage_project"/>
+
   </data>
 </odoo>

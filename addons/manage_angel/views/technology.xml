@@ -31,7 +31,7 @@
     <field name="res_model">manage.technology</field>
     <field name="view_mode">tree,form</field>
   </record>
-    <menuitem id="menu_manage_root" name="Manage Module"/>
-      <menuitem id="menu_manage_technology" name="Technologies" parent="menu_manage_root" action="action_manage_technology"/>
+    <menuitem id="menu_manage_technology" parent="menu_manage_root" action="action_manage_technology"/>
+
 </data>
 </odoo>

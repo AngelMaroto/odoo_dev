@@ -40,7 +40,7 @@
     <field name="res_model">manage.task</field>
     <field name="view_mode">tree,form</field>
   </record>
-    <menuitem id="menu_manage_root" name="Manage Module"/>
-      <menuitem id="menu_manage_task" name="Tasks" parent="menu_manage_root" action="action_manage_task"/>
+    <menuitem id="menu_manage_task" parent="menu_manage_root" action="action_manage_task"/>
+
 </data>
 </odoo>
