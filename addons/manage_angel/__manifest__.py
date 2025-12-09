@@ -30,6 +30,7 @@ Long description of module's purpose
         'views/history.xml',
         'views/task.xml',
         'views/technology.xml',
+        'views/developer.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

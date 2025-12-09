@@ -109,3 +109,18 @@ class Technology(models.Model):
     description = fields.Char()
     photo = fields.Image()
     task_ids = fields.Many2many('manage.task')
+
+#CLASE DEVELOPER (NUEVO)
+class Developer(models.Model):
+    _name = 'res.partner'
+    _inherit = 'res.partner'
+
+    technologies = fields.Many2many(
+        'manage.technology',
+        relation='developer_technologies',
+        column1='developer_id',
+        column2='technologies_id',
+        string='Tecnologías'
+    )
+
+    is_dev = fields.Boolean(string="¿Es desarrollador?", default=False)

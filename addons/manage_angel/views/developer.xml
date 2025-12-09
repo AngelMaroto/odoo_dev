@@ -1,0 +1,41 @@
+<odoo>
+  <data>
+
+    <record id="view_developer_form" model="ir.ui.view">
+        <field name="name">manage.developer.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='internal_notes']" position="after">
+                <page name="devs" string="Devs">
+                    <group>
+                        <field name="is_dev"/>
+                        <field name="technologies" widget="many2many_tags"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_manage_developer" model="ir.actions.act_window">
+        <field name="name">Developers</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        
+        <field name="domain">[('is_dev', '=', True)]</field>
+        
+        <field name="context">{'default_is_dev': True}</field>
+        
+        <field name="view_ids" eval="[(5, 0, 0), 
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}), 
+            (0, 0, {'view_mode': 'form', 'view_id': ref('view_developer_form')})]"/>
+    </record>
+
+    <menuitem id="menu_manage_developer" 
+              name="Devs" 
+              parent="menu_manage_root" 
+              action="action_manage_developer"/>
+
+  </data>
+</odoo>
