@@ -10,12 +10,13 @@ class Project(models.Model):
     history_ids = fields.One2many('manage.history', 'project_id')
     sprint_ids = fields.One2many('manage.sprint', 'project_id')
 
-    code = fields.Char(compute="_compute_code", store=True)
+    # CORREGIDO: store=False y quitamos el depends('id')
+    code = fields.Char(compute="_compute_code", store=False)
 
-    @api.depends('id')
     def _compute_code(self):
         for project in self:
-            project.code = f"PROY_{project.id or 0}"
+            # Usamos _origin.id para asegurar que leemos el ID real si existe
+            project.code = f"PROY_{project.id}" if project.id else "PROY_NUEVO"
 
 
 class Sprint(models.Model):
@@ -75,16 +76,15 @@ class Task(models.Model):
     history_id = fields.Many2one('manage.history')
     sprint_id = fields.Many2one('manage.sprint', compute='_compute_sprint', store=True)
     technology_ids = fields.Many2many('manage.technology')
-    # campo relacionado que refleja el proyecto de la historia
+    
     project_id = fields.Many2one('manage.project', related='history_id.project_id', readonly=True, store=True)
 
-    code = fields.Char(compute="_compute_code", store=True)
+    # CORREGIDO: store=False y quitamos el depends('id')
+    code = fields.Char(compute="_compute_code", store=False)
 
-    @api.depends('id')
     def _compute_code(self):
         for task in self:
-            # Código de tarea, cámbialo si prefieres otro formato
-            task.code = f"TASK_{task.id or 0}"
+            task.code = f"TASK_{task.id}" if task.id else "TASK_NUEVO"
 
     @api.depends('history_id', 'history_id.project_id', 'history_id.project_id.sprint_ids.enddate')
     def _compute_sprint(self):
@@ -110,9 +110,10 @@ class Technology(models.Model):
     photo = fields.Image()
     task_ids = fields.Many2many('manage.task')
 
-#CLASE DEVELOPER (NUEVO)
+
+# CLASE DEVELOPER
 class Developer(models.Model):
-    _name = 'res.partner'
+    # Cuando heredas para extender, no hace falta repetir _name si es el mismo
     _inherit = 'res.partner'
 
     technologies = fields.Many2many(
