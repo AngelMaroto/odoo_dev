@@ -1,12 +1,25 @@
 <odoo>
   <data>
 
+    <record id="view_developer_tree" model="ir.ui.view">
+        <field name="name">manage.developer.tree</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <tree string="Developers">
+                <field name="name"/>
+                <field name="technologies" widget="many2many_tags"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <field name="is_dev" column_invisible="True"/>
+            </tree>
+        </field>
+    </record>
+
     <record id="view_developer_form" model="ir.ui.view">
         <field name="name">manage.developer.form</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
-        <field name="mode">primary</field>
-        <field name="arch" type="xml">
+        <field name="mode">primary</field> <field name="arch" type="xml">
             <xpath expr="//notebook/page[@name='internal_notes']" position="after">
                 <page name="devs" string="Devs">
                     <group>
@@ -28,7 +41,7 @@
         <field name="context">{'default_is_dev': True}</field>
         
         <field name="view_ids" eval="[(5, 0, 0), 
-            (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}), 
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('view_developer_tree')}), 
             (0, 0, {'view_mode': 'form', 'view_id': ref('view_developer_form')})]"/>
     </record>
 

@@ -25,12 +25,12 @@ Long description of module's purpose
         'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
+        'views/history.xml',
         'views/project.xml',
         'views/sprint.xml',
-        'views/history.xml',
         'views/task.xml',
         'views/technology.xml',
-        'views/developer.xml',
+        'views/developer.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
