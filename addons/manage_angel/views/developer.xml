@@ -1,13 +1,28 @@
 <odoo>
   <data>
 
+    <!--
+    # HERENCIA DE VISTA (INHERIT)
+    # No creamos desde cero, modificamos una existente.
+    #-->
     <record id="view_developer_form" model="ir.ui.view">
         <field name="name">manage.developer.form</field>
+        
+       <!-- # 1. El modelo original que vamos a tocar (Contactos)-->
         <field name="model">res.partner</field>
+        
+        <!--# 2. La vista externa ID que vamos a heredar-->
         <field name="inherit_id" ref="base.view_partner_form"/>
+        
         <field name="mode">primary</field>
         <field name="arch" type="xml">
+            
+           <!-- # XPATH: Es como un GPS para encontrar donde poner tu código.
+            # expr="//..." -> Busca dentro del notebook, la página llamada 'internal_notes'
+            # position="after" -> Pon mi código DESPUÉS de esa página.-->
             <xpath expr="//notebook/page[@name='internal_notes']" position="after">
+                
+                <!--# Aquí empieza TU código nuevo (una pestaña nueva)-->
                 <page name="devs" string="Devs">
                     <group>
                         <field name="is_dev"/>
@@ -18,15 +33,26 @@
         </field>
     </record>
 
+   <!--
+    # 
+    # ACTION CON FILTROS (DOMAIN Y CONTEXT)
+    # -->
     <record id="action_manage_developer" model="ir.actions.act_window">
         <field name="name">Developers</field>
         <field name="res_model">res.partner</field>
         <field name="view_mode">tree,form</field>
         
+       <!-- # DOMAIN: Filtra la lista.
+        # "Muestrame solo los contactos donde is_dev sea Verdadero"-->
         <field name="domain">[('is_dev', '=', True)]</field>
         
+       <!-- # CONTEXT: Valores por defecto.
+        # "Si creo un contacto desde este menú, marca is_dev como Verdadero automáticamente"-->
         <field name="context">{'default_is_dev': True}</field>
         
+       <!-- # VIEW_IDS: Truco avanzado.
+        # Le forzamos a usar NUESTRA vista formulario (view_developer_form)
+        # en lugar de la vista normal de contactos.-->
         <field name="view_ids" eval="[(5, 0, 0), 
             (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}), 
             (0, 0, {'view_mode': 'form', 'view_id': ref('view_developer_form')})]"/>

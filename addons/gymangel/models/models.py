@@ -11,6 +11,7 @@ class GymMember(models.Model):
     _inherit = 'res.partner'
 
     is_gym_member = fields.Boolean(string="¿Es Socio?", default=False, help="Marcar si esta persona es socio del gimnasio")
+    is_instructor = fields.Boolean(string="¿Es Monitor?", default=False, help="Marcar si trabaja como monitor")
     
     # [Rubrica: Relacion One2many]
     booking_ids = fields.One2many('gym.booking', 'member_id', string="Reservas")
@@ -64,7 +65,7 @@ class GymSession(models.Model):
     
     # [Rubrica: Relaciones Many2one y One2many]
     activity_id = fields.Many2one("gym.activity", string="Actividad", required=True)
-    instructor_id = fields.Many2one("res.partner", string="Instructor")
+    instructor_id = fields.Many2one("res.partner", string="Instructor", domain="[('is_instructor', '=', True)]")
     booking_ids = fields.One2many("gym.booking", "session_id", string="Asistentes")
     
     # [Rubrica: Campos computados avanzados]
