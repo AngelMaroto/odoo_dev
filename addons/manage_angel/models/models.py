@@ -149,13 +149,12 @@ class Technology(models.Model):
 class Developer(models.Model):
     _inherit = 'res.partner' # ### Heredamos de CONTACTOS (res.partner)
 
-    # Añadimos campos nuevos a la tabla existente
-    technologies = fields.Many2many(
-        'manage.technology',
-        relation='developer_technologies', # Nombre tabla intermedia opcional
-        column1='developer_id',
-        column2='technologies_id',
-        string='Tecnologías'
-    )
+   technologies = fields.Many2many(
+       'manage.technology',
+       relation='developer_technologies',
+       column1='developer_id',
+       column2='technologies_id',
+       string='Tecnologías'
+   )
 
-    is_dev = fields.Boolean(string="¿Es desarrollador?", default=False)
+   is_dev = fields.Boolean(string="¿Es desarrollador?", default=False)
