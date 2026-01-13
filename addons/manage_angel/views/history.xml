@@ -1,38 +1,47 @@
 <odoo>
 <data>
-<record id="view_history_tree" model="ir.ui.view">
-    <field name="name">manage.history.tree</field>
-    <field name="model">manage.history</field>
-    <field name="arch" type="xml">
-      <tree string="User Stories">
-        <field name="name"/>
-        <field name="project_id"/>
-      </tree>
-    </field>
-  </record>
+    <record id="view_history_tree" model="ir.ui.view">
+        <field name="name">manage.history.tree</field>
+        <field name="model">manage.history</field>
+        <field name="arch" type="xml">
+            <tree string="User Stories">
+                <field name="name"/>
+                <field name="project_id"/>
+            </tree>
+        </field>
+    </record>
 
-  <record id="view_history_form" model="ir.ui.view">
-    <field name="name">manage.history.form</field>
-    <field name="model">manage.history</field>
-    <field name="arch" type="xml">
-      <form string="User Story Form">
-        <sheet>
-          <group>
-            <field name="name"/>
-            <field name="description"/>
-            <field name="project_id"/>
-            <field name="task_ids"/>
-          </group>
-        </sheet>
-      </form>
-    </field>
-  </record>
+    <record id="view_history_form" model="ir.ui.view">
+        <field name="name">manage.history.form</field>
+        <field name="model">manage.history</field>
+        <field name="arch" type="xml">
+            <form string="User Story Form">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="project_id"/>
+                        <!--# Lista de tareas de esta historia-->
+                        <field name="task_ids"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
     <record id="action_manage_history" model="ir.actions.act_window">
-    <field name="name">User Stories</field>
-    <field name="res_model">manage.history</field>
-    <field name="view_mode">tree,form</field>
-  </record>
-  <menuitem id="menu_manage_root" name="Manage Module"/>
+        <field name="name">User Stories</field>
+        <field name="res_model">manage.history</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!--
+    # MENU RAIZ (ROOT)
+    # Importante: No tiene 'parent'.
+    # Todos los demás menús del módulo colgarán de este ID: 'menu_manage_root'-->
+    <menuitem id="menu_manage_root" name="Manage Module"/>
+    
+    <!--# Submenú History (cuelga del raíz)-->
     <menuitem id="menu_manage_history" parent="menu_manage_root" action="action_manage_history"/>
 </data>
 </odoo>
