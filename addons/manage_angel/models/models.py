@@ -116,7 +116,7 @@ class Developer(models.Model):
     # Cuando heredas para extender, no hace falta repetir _name si es el mismo
     _inherit = 'res.partner'
 
-   technologies = fields.Many2many(
+technologies = fields.Many2many(
        'manage.technology',
        relation='developer_technologies',
        column1='developer_id',
@@ -124,4 +124,4 @@ class Developer(models.Model):
        string='Tecnologías'
    )
 
-   is_dev = fields.Boolean(string="¿Es desarrollador?", default=False)
+is_dev = fields.Boolean(string="¿Es desarrollador?", default=False)

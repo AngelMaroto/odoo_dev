@@ -187,7 +187,6 @@
                 <page string="Gimnasio" name="gym_page">
                     <group>
                         <field name="is_gym_member"/>
-                        <field name="is_instructor"/>
                     </group>
                 </page>
             </xpath>
