@@ -10,7 +10,7 @@ class GymMember(models.Model):
     _inherit = 'res.partner'
 
     is_gym_member = fields.Boolean(string="¿Es Socio?", default=False, help="Marcar si esta persona es socio del gimnasio")
-    is_instructor = fields.Boolean(string="¿Es Monitor?", default=False, help="Marcar si trabaja como monitor")
+    #is_instructor = fields.Boolean(string="¿Es Monitor?", default=False, help="Marcar si trabaja como monitor")
     
     # [Rubrica: Relacion One2many]
     booking_ids = fields.One2many('gym.booking', 'member_id', string="Reservas")
