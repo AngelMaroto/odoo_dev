@@ -157,12 +157,12 @@ class Developer(models.Model):
         column2='technologies_id',
         string='Tecnologías'
     )
-technologies = fields.Many2many(
-       'manage.technology',
-       relation='developer_technologies',
-       column1='developer_id',
-       column2='technologies_id',
-       string='Tecnologías'
-   )
+    technologies = fields.Many2many(
+        'manage.technology',
+        relation='developer_technologies',
+        column1='developer_id',
+        column2='technologies_id',
+        string='Tecnologías'
+    )
 
-is_dev = fields.Boolean(string="¿Es desarrollador?", default=False)
+    is_dev = fields.Boolean(string="¿Es desarrollador?", default=False)

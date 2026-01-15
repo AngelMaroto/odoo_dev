@@ -7,11 +7,10 @@ import random
 
 # 1. MODELO SOCIO (HERENCIA DE RES.PARTNER)
 class GymMember(models.Model):
-    _name = 'res.partner'
     _inherit = 'res.partner'
 
     is_gym_member = fields.Boolean(string="¿Es Socio?", default=False, help="Marcar si esta persona es socio del gimnasio")
-    is_instructor = fields.Boolean(string="¿Es Monitor?", default=False, help="Marcar si trabaja como monitor")
+    #is_instructor = fields.Boolean(string="¿Es Monitor?", default=False, help="Marcar si trabaja como monitor")
     
     # [Rubrica: Relacion One2many]
     booking_ids = fields.One2many('gym.booking', 'member_id', string="Reservas")
@@ -96,8 +95,6 @@ class GymSession(models.Model):
         for session in self:
             session.occupied_seats = len(session.booking_ids)
             session.available_seats = session.capacity - session.occupied_seats
-
-    # --- METODOS ORM (COMO EN TU EJEMPLO) ---
     
     def f_create_prueba(self):
         # [Rubrica: ORM Create]

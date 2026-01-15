@@ -1,0 +1,36 @@
+<odoo>
+<data>
+        <record id ="view_cientifico_tree" model="ir.ui.view">
+            <field name="name">iaangel.cientifico.tree</field>
+            <field name="model">iaangel.cientifico</field>
+            <field name="arch" type="xml">
+                <tree string="Cientifico">
+                    <field name="nombre"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_cientifico_form" model="ir.ui.view">
+            <field name="name">iaangel.cientifico.form</field>
+            <field name="model">iaangel.cientifico</field>
+            <field name="arch" type="xml">
+                <form string="Cientifico Form">
+                    <sheet>
+                        <group>
+                            <field name="nombre"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_iaangel_cientifico" model="ir.actions.act_window">
+            <field name="name">Cientifico</field>
+            <field name="res_model">iaangel.cientifico</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_iaangel_cientifico" parent="menu_iaangel_root" action="action_iaangel_cientifico"/>
+
+</data>
+</odoo>

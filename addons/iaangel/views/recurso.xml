@@ -1,0 +1,38 @@
+<odoo>
+<data>
+        <record id ="view_recurso_tree" model="ir.ui.view">
+            <field name="name">iaangel.recurso.tree</field>
+            <field name="model">iaangel.recurso</field>
+            <field name="arch" type="xml">
+                <tree string="Recurso">
+                    <field name="nombre"/>
+                    <field name="cantidad_disponible"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_recurso_form" model="ir.ui.view">
+            <field name="name">iaangel.recurso.form</field>
+            <field name="model">iaangel.recurso</field>
+            <field name="arch" type="xml">
+                <form string="Recurso Form">
+                    <sheet>
+                        <group>
+                            <field name="nombre"/>
+                            <field name="cantidad_disponible"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_iaangel_recurso" model="ir.actions.act_window">
+            <field name="name">Recurso</field>
+            <field name="res_model">iaangel.recurso</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_iaangel_recurso" parent="menu_iaangel_root" action="action_iaangel_recurso"/>
+
+</data>
+</odoo>

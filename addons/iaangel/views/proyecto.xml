@@ -1,0 +1,54 @@
+<odoo>
+<data>
+        <record id ="view_proyecto_tree" model="ir.ui.view">
+            <field name="name">iaangel.proyecto.tree</field>
+            <field name="model">iaangel.proyecto</field>
+            <field name="arch" type="xml">
+                <tree string="Proyecto">
+                    <field name="titulo"/>
+                    <field name="descripcion"/>
+                    <field name="prioridad"/>
+                    <field name="urgente"/>
+                    <field name="en_espera"/>
+                    <field name="finalizado"/>
+                    <field name="imagen"/>
+                    <field name="fecha_creacion"/>
+                    <field name="fecha_modificacion"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_proyecto_form" model="ir.ui.view">
+            <field name="name">iaangel.proyecto.form</field>
+            <field name="model">iaangel.proyecto</field>
+            <field name="arch" type="xml">
+                <form string="Proyecto Form">
+                    <sheet>
+                        <group>
+                            <field name="titulo"/>
+                            <field name="descripcion"/>
+                            <field name="prioridad"/>
+                            <field name="urgente"/>
+                            <field name="en_espera"/>
+                            <field name="finalizado"/>
+                            <field name="imagen"/>
+                            <field name="fecha_creacion"/>
+                            <field name="fecha_modificacion"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_iaangel_proyecto" model="ir.actions.act_window">
+            <field name="name">Proyecto</field>
+            <field name="res_model">iaangel.proyecto</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_iaangel_root" name="Iaangel Module"/>
+
+        <menuitem id="menu_iaangel_proyecto" parent="menu_iaangel_root" action="action_iaangel_proyecto"/>
+
+</data>
+</odoo>

@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_iaangel_proyecto,iaangel.proyecto,model_iaangel_proyecto,base.group_user,1,1,1,1
+access_iaangel_laboratorio,iaangel.laboratorio,model_iaangel_laboratorio,base.group_user,1,1,1,1
+access_iaangel_cientifico,iaangel.cientifico,model_iaangel_cientifico,base.group_user,1,1,1,1
+access_iaangel_recurso,iaangel.recurso,model_iaangel_recurso,base.group_user,1,1,1,1
+access_iaangel_especialidad,iaangel.especialidad,model_iaangel_especialidad,base.group_user,1,1,1,1
