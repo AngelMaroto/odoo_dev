@@ -10,7 +10,7 @@ class GymMember(models.Model):
     _inherit = 'res.partner'
 
     is_gym_member = fields.Boolean(string="¿Es Socio?", default=False, help="Marcar si esta persona es socio del gimnasio")
-    #is_instructor = fields.Boolean(string="¿Es Monitor?", default=False, help="Marcar si trabaja como monitor")
+    is_instructor = fields.Boolean(string="¿Es Monitor?", default=False, help="Marcar si trabaja como monitor")
     
     # [Rubrica: Relacion One2many]
     booking_ids = fields.One2many('gym.booking', 'member_id', string="Reservas")
@@ -70,6 +70,7 @@ class GymSession(models.Model):
     # [Rubrica: Campos computados avanzados]
     occupied_seats = fields.Integer(string="Ocupadas", compute="_get_seats", store=True)
     available_seats = fields.Integer(string="Libres", compute="_get_seats", store=True)
+    occupied_percentage = fields.Float(string="Porcentaje Ocupación", compute="_get_seats", store=True)
     
     color = fields.Integer(string="Color Kanban") # Necesario para la vista Kanban
 
@@ -95,6 +96,10 @@ class GymSession(models.Model):
         for session in self:
             session.occupied_seats = len(session.booking_ids)
             session.available_seats = session.capacity - session.occupied_seats
+            if session.capacity > 0:
+                session.occupied_percentage = (session.occupied_seats / session.capacity) * 100
+            else:
+                session.occupied_percentage = 0.0
     
     def f_create_prueba(self):
         # [Rubrica: ORM Create]
